@@ -14,7 +14,5 @@ public class TestController {
     @RequestMapping("/test")
     public String jenkinsTestController() {
         return "hello jenkins";
-
-
     }
 }
