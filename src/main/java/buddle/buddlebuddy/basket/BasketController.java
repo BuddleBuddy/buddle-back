@@ -35,6 +35,13 @@ public class BasketController {
         return new ResponseEntity<>(getAllBasketRes, HttpStatus.OK);
     }
 
+    // 내 장바구니 조회
+    @GetMapping("/img/{user_id}")
+    public ResponseEntity<GetAllBasketRes> myBasket(@PathVariable("user_id") Long userId) {
+        GetAllBasketRes getAllBasketRes = new GetAllBasketRes(basketService.myBasket(userId));
+        return new ResponseEntity<>(getAllBasketRes, HttpStatus.OK);
+    }
+
 
     // 참가자 현황
     @GetMapping("/count")

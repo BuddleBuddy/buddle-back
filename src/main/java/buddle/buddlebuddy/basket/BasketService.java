@@ -47,10 +47,9 @@ public class BasketService {
         );
     }
 
-//    public List<> myBasket(Long userId){
-//        List byUserId = basketRepository.findByUserId(userId);
-//
-//    }
+    public List<BasketListResponseInterface> myBasket(Long userId){
+        return basketRepository.findBasketListResponseInterfaceUsingInterfaceWithNative(userId);
+    }
 
     public List<BasketListResponseInterface> allBasket(){
         List<BasketListResponseInterface> all = basketRepository.findBasketListResponseInterfaceUsingInterfaceWithNative();
