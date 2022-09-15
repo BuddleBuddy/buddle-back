@@ -1,6 +1,7 @@
 package buddle.buddlebuddy.basket.response;
 
 import buddle.buddlebuddy.basket.Basket;
+import buddle.buddlebuddy.basket.BasketListResponseInterface;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,5 +14,5 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 public class GetAllBasketRes {
-    List<Basket> all;
+    List<BasketListResponseInterface> all;
 }

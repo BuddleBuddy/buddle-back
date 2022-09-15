@@ -52,8 +52,8 @@ public class BasketService {
 //
 //    }
 
-    public List<Basket> allBasket(){
-        List<Basket> all = basketRepository.findAll();
+    public List<BasketListResponseInterface> allBasket(){
+        List<BasketListResponseInterface> all = basketRepository.findBasketListResponseInterfaceUsingInterfaceWithNative();
         return all;
     }
 
