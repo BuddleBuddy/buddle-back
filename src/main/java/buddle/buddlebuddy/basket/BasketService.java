@@ -1,6 +1,7 @@
 package buddle.buddlebuddy.basket;
 
 import buddle.buddlebuddy.basket.request.PostBasketReq;
+import buddle.buddlebuddy.basket.response.GetAllBasketRes;
 import buddle.buddlebuddy.common.utils.S3Uploader;
 import buddle.buddlebuddy.user.User;
 import buddle.buddlebuddy.user.UserRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,6 +44,11 @@ public class BasketService {
                             .build()
               )
         );
+    }
+
+    public List<GetAllBasketRes> allBasket(){
+        List all = basketRepository.findAll();
+        return all;
     }
 
     public Long countBasketUserId(){
