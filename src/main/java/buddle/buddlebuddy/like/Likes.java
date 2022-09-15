@@ -18,10 +18,10 @@ public class Likes {
     private Long idx;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User likeUser;
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "basket_id")
+    @JoinColumn(name = "basket_id", insertable = false, updatable = false)
     private Basket basket;
 }

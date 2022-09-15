@@ -20,10 +20,10 @@ public class User {
     private String name;
     private String phoneNumber;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Basket> basketList;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Likes> likesList;
 
 }

@@ -16,7 +16,7 @@ public class BasketDto {
     public BasketDto(Basket basket){
         this.idx = basket.getIdx();
         this.title = basket.getTitle();
-        this.userIdx = basket.getUserIdx().getIdx();
+        this.userIdx = basket.getUser().getIdx();
         this.url = basket.getUrl();
     }
 

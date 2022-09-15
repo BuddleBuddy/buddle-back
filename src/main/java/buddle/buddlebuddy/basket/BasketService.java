@@ -41,7 +41,7 @@ public class BasketService {
                     Basket.builder()
                             .title(postBasketReq.getTitle())
                             .url(imgName)
-                            .userIdx(user)
+                            .user(user)
                             .build()
               )
         );

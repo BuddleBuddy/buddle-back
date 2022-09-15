@@ -23,10 +23,10 @@ public class Basket {
     private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User userIdx;
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "basket", fetch = FetchType.LAZY)
     private List<Likes> likesList;
 
 
