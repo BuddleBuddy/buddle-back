@@ -5,6 +5,9 @@ spring:
   application:
     name: buddlebuddy
 
+  profiles:
+    include: oauth
+
   datasource:
     url:  jdbc:mysql://buddledb.cvptame2b3q9.ap-northeast-2.rds.amazonaws.com:3306/buddleDB
     username: admin
