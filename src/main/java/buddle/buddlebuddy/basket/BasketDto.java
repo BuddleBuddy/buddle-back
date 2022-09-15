@@ -10,14 +10,15 @@ import lombok.ToString;
 public class BasketDto {
     private Long idx;
     private String title;
-    private String imageUrl;
     private Long userIdx;
+    private String url;
 
     public BasketDto(Basket basket){
         this.idx = basket.getIdx();
         this.title = basket.getTitle();
-        this.imageUrl = basket.getImageUrl();
         this.userIdx = basket.getUserIdx().getIdx();
+        this.url = basket.getUrl();
     }
+
 
 }

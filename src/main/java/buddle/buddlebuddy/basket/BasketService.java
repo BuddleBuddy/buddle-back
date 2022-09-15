@@ -30,24 +30,30 @@ public class BasketService {
 
     public Optional<Basket> insertBasket(PostBasketReq postBasketReq, Long userIdx){
         String imgName = saveFile(postBasketReq.getImg(), postBasketReq.getTitle(), userIdx);
+        System.out.println(imgName);
 
-//        User user = userRepository.findByUserId();
+        //user 추가되면 수정
         User user = new User();
         user.setIdx(userIdx);
 
         return Optional.of(
               basketRepository.save(
                     Basket.builder()
-                            .userIdx(user)
                             .title(postBasketReq.getTitle())
-                            .imageUrl(postBasketReq.getImageUrl())
+                            .url(imgName)
+                            .userIdx(user)
                             .build()
               )
         );
     }
 
-    public List<GetAllBasketRes> allBasket(){
-        List all = basketRepository.findAll();
+//    public List<> myBasket(Long userId){
+//        List byUserId = basketRepository.findByUserId(userId);
+//
+//    }
+
+    public List<Basket> allBasket(){
+        List<Basket> all = basketRepository.findAll();
         return all;
     }
 
@@ -55,11 +61,12 @@ public class BasketService {
         return basketRepository.count();
     }
 
-    private String saveFile(MultipartFile img, String imgName, Long userIdx){
+    private String saveFile(MultipartFile img, String title, Long userIdx){
+        String imgName = title + "_" + img.getOriginalFilename();
         String imgPath = "images/" + userIdx;
         try {
-            s3Uploader.upload(img, imgPath, imgName);
-            return imgName;
+            String uploadName = s3Uploader.upload(img, imgPath, imgName);
+            return uploadName;
         } catch (IOException e) {
             throw new NotFoundException("failed to save img");
         }

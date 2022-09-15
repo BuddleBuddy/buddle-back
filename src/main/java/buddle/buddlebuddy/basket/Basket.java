@@ -16,17 +16,18 @@ import java.util.List;
 public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "basket_id")
     private Long idx;
 
     private String title;
-    private String imageUrl;
+    private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User userIdx;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Likes> likesList;
-
 
 
 }

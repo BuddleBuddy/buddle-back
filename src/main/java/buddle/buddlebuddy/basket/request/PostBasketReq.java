@@ -10,6 +10,5 @@ import org.springframework.web.multipart.MultipartFile;
 @ToString
 public class PostBasketReq {
     private String title;
-    private String imageUrl;
     private MultipartFile img;
 }
