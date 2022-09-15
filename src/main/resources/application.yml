@@ -25,4 +25,20 @@ spring:
       platform: mysql
 logging.level:
   org.hibernate.SQL: debug
-  #  org.hibernate.type: trace
+  com:
+    amazonaws:
+      util:
+        EC2MetadataUtils: ERROR
+
+cloud:
+  aws:
+    s3:
+      bucket: basketsavebucket
+    credentials:
+      access-key: AKIAVUI27QQY2W5EUYKZ
+      secret-key: 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
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false

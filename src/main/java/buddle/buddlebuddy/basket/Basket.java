@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Basket {
@@ -17,11 +18,15 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
+    private String title;
     private String imageUrl;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User userIdx;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Likes> likesList;
+
+
+
 }
