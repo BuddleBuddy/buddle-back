@@ -23,11 +23,9 @@ public class Basket {
     private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "basket", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Likes> likesList;
-
-
 }

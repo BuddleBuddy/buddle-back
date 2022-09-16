@@ -7,10 +7,7 @@ import buddle.buddlebuddy.common.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -27,7 +24,6 @@ public class BasketController {
         return new ResponseEntity<>(new BasketDto(basket), HttpStatus.OK);
     }
 
-
     // 모든 장바구니 조회
     @GetMapping("/img")
     public ResponseEntity<GetAllBasketRes> allBasket() {
@@ -42,6 +38,11 @@ public class BasketController {
         return new ResponseEntity<>(getAllBasketRes, HttpStatus.OK);
     }
 
+    // 내 장바구니 삭제
+    @DeleteMapping("/img/{user_id}/{idx}")
+    public ResponseEntity<String> deleteBasket(@PathVariable("user_id") Long userId, @PathVariable("idx") Long idx){
+        return new ResponseEntity<>(basketService.deleteBasket(idx), HttpStatus.OK);
+    }
 
     // 참가자 현황
     @GetMapping("/count")

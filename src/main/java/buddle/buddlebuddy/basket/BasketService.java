@@ -1,13 +1,12 @@
 package buddle.buddlebuddy.basket;
 
 import buddle.buddlebuddy.basket.request.PostBasketReq;
-import buddle.buddlebuddy.basket.response.GetAllBasketRes;
 import buddle.buddlebuddy.common.utils.S3Uploader;
 import buddle.buddlebuddy.user.User;
-import buddle.buddlebuddy.user.UserRepository;
 import com.amazonaws.services.kms.model.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,19 +17,17 @@ import java.util.Optional;
 public class BasketService {
     private final BasketRepository basketRepository;
     private final S3Uploader s3Uploader;
-    private final UserRepository userRepository;
+
 
     @Autowired
-    public BasketService(BasketRepository basketRepository, S3Uploader s3Uploader, UserRepository userRepository) {
+    public BasketService(BasketRepository basketRepository, S3Uploader s3Uploader) {
         this.basketRepository = basketRepository;
         this.s3Uploader = s3Uploader;
-        this.userRepository = userRepository;
     }
 
-
+    @Transactional(rollbackFor = Exception.class)
     public Optional<Basket> insertBasket(PostBasketReq postBasketReq, Long userIdx){
         String imgName = saveFile(postBasketReq.getImg(), postBasketReq.getTitle(), userIdx);
-        System.out.println(imgName);
 
         //user 추가되면 수정
         User user = new User();
@@ -47,15 +44,24 @@ public class BasketService {
         );
     }
 
+    @Transactional(readOnly = true)
     public List<BasketListResponseInterface> myBasket(Long userId){
         return basketRepository.findBasketListResponseInterfaceUsingInterfaceWithNative(userId);
     }
 
+    @Transactional(readOnly = true)
     public List<BasketListResponseInterface> allBasket(){
         List<BasketListResponseInterface> all = basketRepository.findBasketListResponseInterfaceUsingInterfaceWithNative();
         return all;
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public String deleteBasket(Long idx){
+        basketRepository.deleteByIdx(idx);
+        return "장바구니를 삭제했습니다.";
+    }
+
+    @Transactional(readOnly = true)
     public Long countBasketUserId(){
         return basketRepository.count();
     }
