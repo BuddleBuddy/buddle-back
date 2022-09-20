@@ -1,6 +1,6 @@
 package buddle.buddlebuddy.basket;
 
-import buddle.buddlebuddy.like.Likes;
+import buddle.buddlebuddy.likes.Likes;
 import buddle.buddlebuddy.user.User;
 import lombok.*;
 
@@ -15,13 +15,16 @@ import java.util.List;
 public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "basket_id")
     private Long idx;
 
-    private String imageUrl;
+    private String title;
+    private String url;
 
-    @ManyToOne
-    private User userIdx;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "basket", fetch = FetchType.LAZY)
     private List<Likes> likesList;
 }
