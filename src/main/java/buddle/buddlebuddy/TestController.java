@@ -20,4 +20,9 @@ public class TestController {
     public String loginTestController() {
         return "hello user";
     }
+
+    @RequestMapping("/test/jenkins")
+    public String jenkinsTestController2() {
+        return "jenkins test!!";
+    }
 }
