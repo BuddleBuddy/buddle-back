@@ -16,8 +16,8 @@ public class TestController {
         return "hello jenkins";
     }
 
-    @RequestMapping("/jenkinsTest")
-    public String jenkinsTestController2() {
-        return "hello jenkins!!!!!!";
+    @RequestMapping("/user/test")
+    public String loginTestController() {
+        return "hello user";
     }
 }
