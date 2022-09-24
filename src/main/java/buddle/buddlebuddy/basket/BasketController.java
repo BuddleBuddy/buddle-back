@@ -46,9 +46,9 @@ public class BasketController {
 
     // 참가자 현황
     @GetMapping("/count")
-    public ResponseEntity<GetCountRes> countBasket() {
+    public ResponseEntity<Long> countBasket() {
         Long cnt = basketService.countBasketUserId();
-        return new ResponseEntity<>(new GetCountRes(cnt), HttpStatus.OK);
+        return new ResponseEntity<>(cnt, HttpStatus.OK);
     }
 
 
