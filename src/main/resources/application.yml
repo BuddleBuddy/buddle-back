@@ -1,0 +1,44 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: buddlebuddy
+
+  datasource:
+    url:  jdbc:mysql://buddledb.cvptame2b3q9.ap-northeast-2.rds.amazonaws.com:3306/buddleDB
+    username: admin
+    password: buddlebuddy
+    driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        #     show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+  sql:
+    init:
+      platform: mysql
+logging.level:
+  org.hibernate.SQL: debug
+  com:
+    amazonaws:
+      util:
+        EC2MetadataUtils: ERROR
+
+cloud:
+  aws:
+    s3:
+      bucket: basketsavebucket
+    credentials:
+      access-key: AKIAVUI27QQY2W5EUYKZ
+      secret-key: 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
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
