@@ -1,3 +1,4 @@
+/*
 package buddle.buddlebuddy.config;
 
 import org.springframework.context.annotation.Bean;
@@ -23,4 +24,4 @@ public class CorsConfig {
         return new CorsFilter(source);
 
     }
-}
+}*/
